@@ -50,7 +50,7 @@ function sanitize(val: any) {
 				for (let i = 0; i < val.length; i++) {
 					val[i] = sanitize(val[i]);
 				}
-			} else {
+			} else if (val) {
 				for (const key of Object.keys(val)) {
 					val[key] = sanitize(val[key]);
 				}
