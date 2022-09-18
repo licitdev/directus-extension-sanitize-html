@@ -18,6 +18,10 @@ export default defineHook(({ filter }) => {
 		return { ...acc, [collection]: [...(acc[collection] ?? []), pathSplits.slice(1).join('.')] };
 	}, {});
 
+	const allowedTags = process.env.EXT_SANITIZE_HTML_ALLOWED_TAGS
+		? process.env.EXT_SANITIZE_HTML_ALLOWED_TAGS.split(',')
+		: undefined;
+
 	for (const eventScope of eventScopes) {
 		filter(eventScope, runSanitize);
 	}
@@ -39,24 +43,24 @@ export default defineHook(({ filter }) => {
 
 		return input;
 	}
-});
 
-function sanitize(val: any) {
-	switch (typeof val) {
-		case 'string':
-			return sanitizeHtml(val);
-		case 'object':
-			if (Array.isArray(val)) {
-				for (let i = 0; i < val.length; i++) {
-					val[i] = sanitize(val[i]);
+	function sanitize(val: any) {
+		switch (typeof val) {
+			case 'string':
+				return sanitizeHtml(val, { allowedTags });
+			case 'object':
+				if (Array.isArray(val)) {
+					for (let i = 0; i < val.length; i++) {
+						val[i] = sanitize(val[i]);
+					}
+				} else if (val) {
+					for (const key of Object.keys(val)) {
+						val[key] = sanitize(val[key]);
+					}
 				}
-			} else if (val) {
-				for (const key of Object.keys(val)) {
-					val[key] = sanitize(val[key]);
-				}
-			}
-			return val;
-		default:
-			return val;
+				return val;
+			default:
+				return val;
+		}
 	}
-}
+});

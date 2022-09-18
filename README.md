@@ -29,6 +29,14 @@ Defaults to no path to omit.
 
 Example: `articles.content,website.rawHtml`
 
+###
+
+Add the `EXT_SANITIZE_HTML_ALLOWED_TAGS` environment variable with the `<html-tag>` separated by commas.
+
+Defaults to `undefined`, using the defaults from `sanitize-html`.
+
+Example: `a,b,i,em,strong`
+
 ## License
 
 GPLv3 License. See the [LICENSE](LICENSE) file.
