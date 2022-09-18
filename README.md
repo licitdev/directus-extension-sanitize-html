@@ -2,6 +2,9 @@
 
 Sanitize HTML inputs with the [sanitize-html](https://www.npmjs.com/package/sanitize-html) package.
 
+[![NPM version][npm-version-image]][npm-url] [![License][license-image]][license-url]
+[![NPM downloads][npm-downloads-image]][npm-url]
+
 ## Installation
 
 ```
@@ -25,3 +28,13 @@ Add the `EXT_SANITIZE_HTML_OMIT_PATHS` environment variable with the `<collectio
 Defaults to no path to omit.
 
 Example: `articles.content,website.rawHtml`
+
+## License
+
+GPLv3 License. See the [LICENSE](LICENSE) file.
+
+[npm-downloads-image]: https://img.shields.io/npm/dm/directus-extension-sanitize-html.svg?style=flat-square
+[npm-version-image]: https://img.shields.io/npm/v/directus-extension-sanitize-html.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/directus-extension-sanitize-html
+[license-url]: https://github.com/licitdev/directus-extension-sanitize-html/blob/main/LICENSE
+[license-image]: https://img.shields.io/npm/l/directus-extension-sanitize-html.svg?style=flat-square
