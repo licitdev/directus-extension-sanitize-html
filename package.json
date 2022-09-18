@@ -1,6 +1,6 @@
 {
 	"name": "directus-extension-sanitize-html",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"keywords": [
 		"directus",
 		"directus-extension",
