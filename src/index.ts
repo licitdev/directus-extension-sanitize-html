@@ -22,6 +22,12 @@ export default defineHook(({ filter }) => {
 		? process.env.EXT_SANITIZE_HTML_ALLOWED_TAGS.split(',')
 		: undefined;
 
+	const disallowedTagsMode = process.env.EXT_SANITIZE_HTML_DISALLOWED_TAGS_MODE
+		? ['discard', 'escape', 'recursiveEscape'].includes(process.env.EXT_SANITIZE_HTML_DISALLOWED_TAGS_MODE)
+			? (process.env.EXT_SANITIZE_HTML_DISALLOWED_TAGS_MODE as sanitizeHtml.DisallowedTagsModes)
+			: undefined
+		: undefined;
+
 	for (const eventScope of eventScopes) {
 		filter(eventScope, runSanitize);
 	}
@@ -47,7 +53,7 @@ export default defineHook(({ filter }) => {
 	function sanitize(val: any) {
 		switch (typeof val) {
 			case 'string':
-				return sanitizeHtml(val, { allowedTags });
+				return sanitizeHtml(val, { allowedTags, disallowedTagsMode });
 			case 'object':
 				if (Array.isArray(val)) {
 					for (let i = 0; i < val.length; i++) {

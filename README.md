@@ -29,13 +29,21 @@ Defaults to no path to omit.
 
 Example: `articles.content,website.rawHtml`
 
-###
+### Customize which HTML tags are allowed
 
 Add the `EXT_SANITIZE_HTML_ALLOWED_TAGS` environment variable with the `<html-tag>` separated by commas.
 
 Defaults to `undefined`, using the defaults from `sanitize-html`.
 
 Example: `a,b,i,em,strong`
+
+### Customize the action taken for disallowed tags
+
+Add the `EXT_SANITIZE_HTML_DISALLOWED_TAGS_MODE` environment variable with `discard`, `escape` or `recursiveEscape`.
+
+Defaults to `undefined`, using the defaults from `sanitize-html`.
+
+Example: `escape`
 
 ## License
 
